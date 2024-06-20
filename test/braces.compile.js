@@ -7,6 +7,10 @@ const parse = require('../lib/parse');
 
 describe('braces.compile()', () => {
   describe('errors', () => {
+    it('should throw an error when string exceeds max safe length', () => {
+      let MAX_LENGTH = 10000;
+      assert.throws(() => parse('.'.repeat(MAX_LENGTH + 2)));
+    });
     it('should throw an error when invalid args are passed', () => {
       assert.throws(() => compile());
     });
